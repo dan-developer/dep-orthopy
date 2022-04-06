@@ -7,8 +7,10 @@
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/orthopy.svg?style=flat-square)](https://pypi.org/pypi/orthopy/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1173151.svg?style=flat-square)](https://doi.org/10.5281/zenodo.1173151)
 [![GitHub stars](https://img.shields.io/github/stars/nschloe/orthopy.svg?style=flat-square&logo=github&label=Stars&logoColor=white)](https://github.com/nschloe/orthopy)
-[![PyPi downloads](https://img.shields.io/pypi/dm/orthopy.svg?style=flat-square)](https://pypistats.org/packages/orthopy)
+[![Downloads](https://pepy.tech/badge/orthopy/month?style=flat-square)](https://pepy.tech/project/orthopy)
+<!--[![PyPi downloads](https://img.shields.io/pypi/dm/orthopy.svg?style=flat-square)](https://pypistats.org/packages/orthopy)-->
 
+[![Discord](https://img.shields.io/static/v1?logo=discord&label=chat&message=on%20discord&color=7289da&style=flat-square)](https://discord.gg/hnTJ5MRX2Y)
 [![orthogonal](https://img.shields.io/badge/orthogonal-yes-ff69b4.svg?style=flat-square)](https://github.com/nschloe/orthopy)
 
 [![gh-actions](https://img.shields.io/github/workflow/status/nschloe/orthopy/ci?style=flat-square)](https://github.com/nschloe/orthopy/actions?query=workflow%3Aci)
@@ -53,7 +55,7 @@ for _ in range(5):
 -0.2890625   # P_4(0.5)
 ```
 Other ways of getting the first `n` items are
-<!--exdown-skip-->
+<!--pytest-codeblocks:skip-->
 ```python
 evaluator = Eval(x, "normal")
 vals = [next(evaluator) for _ in range(n)]
@@ -102,7 +104,7 @@ Legendre             |  Chebyshev 1       |  Chebyshev 2  |
 
 Jacobi, Gegenbauer (α=β), Chebyshev 1 (α=β=-1/2), Chebyshev 2 (α=β=1/2), Legendre
 (α=β=0) polynomials.
-<!--exdown-skip-->
+<!--pytest-codeblocks:skip-->
 ```python
 import orthopy
 
@@ -147,7 +149,7 @@ for k in range(5):
 <img src="https://nschloe.github.io/orthopy/e1r.svg" width="45%">
 
 (Generalized) Laguerre polynomials.
-<!--exdown-skip-->
+<!--pytest-codeblocks:skip-->
 ```python
 evaluator = orthopy.e1r.Eval(x, alpha=0, scaling="normal")
 ```
@@ -160,7 +162,7 @@ Hermite polynomials come in two standardizations:
   * `"physicists"` (against the weight function `exp(-x ** 2)`
   * `"probabilists"` (against the weight function `1 / sqrt(2 * pi) * exp(-x ** 2 / 2)`
 
-<!--exdown-skip-->
+<!--pytest-codeblocks:skip-->
 ```python
 evaluator = orthopy.e1r2.Eval(
     x,
@@ -175,7 +177,7 @@ evaluator = orthopy.e1r2.Eval(
 Not all of those are polynomials, so they should really be called associated Legendre
 _functions_. The <i>k</i>th iteration contains _2k+1_ functions, indexed from
 _-k_ to _k_. (See the color grouping in the above plot.)
-<!--exdown-skip-->
+<!--pytest-codeblocks:skip-->
 ```python
 evaluator = orthopy.c1.associated_legendre.Eval(
     x, phi=None, standardization="natural", with_condon_shortley_phase=True
@@ -228,7 +230,7 @@ Complex-valued _spherical harmonics,_ plotted with
 pink=real negative, blue=imaginary positive, yellow=imaginary negative). The functions
 in the middle are real-valued. The complex angle takes _n_ turns on the <i>n</i>th
 level.
-<!--exdown-skip-->
+<!--pytest-codeblocks:skip-->
 ```python
 evaluator = orthopy.u3.EvalCartesian(
     x,
@@ -259,7 +261,7 @@ Jacobi product polynomials.
 All polynomials are normalized on the n-dimensional cube. The dimensionality is
 determined by `X.shape[0]`.
 
-<!--exdown-skip-->
+<!--pytest-codeblocks:skip-->
 ```python
 evaluator = orthopy.cn.Eval(X, alpha=0, beta=0)
 values, degrees = next(evaluator)
@@ -275,7 +277,7 @@ Hermite product polynomials.
 All polynomials are normalized over the measure. The dimensionality is determined by
 `X.shape[0]`.
 
-<!--exdown-skip-->
+<!--pytest-codeblocks:skip-->
 ```python
 evaluator = orthopy.enr2.Eval(
     x,
@@ -296,14 +298,14 @@ values, degrees = next(evaluator)
 
  * The the sanity of recurrence coefficients with test 3 from [Gautschi's article](https://doi.org/10.1007/BF02218441):
    computing the weighted sum of orthogonal polynomials:
-   <!--exdown-skip-->
+   <!--pytest-codeblocks:skip-->
    ```python
    orthopy.tools.gautschi_test_3(moments, alpha, beta)
    ```
 
  * [Clenshaw algorithm](https://en.wikipedia.org/wiki/Clenshaw_algorithm) for
    computing the weighted sum of orthogonal polynomials:
-   <!--exdown-skip-->
+   <!--pytest-codeblocks:skip-->
    ```python
    vals = orthopy.c1.clenshaw(a, alpha, beta, t)
    ```
@@ -329,7 +331,7 @@ pytest
 
 * [Robert C. Kirby, Singularity-free evaluation of collapsed-coordinate orthogonal polynomials, ACM Transactions on Mathematical Software (TOMS), Volume 37, Issue 1, January 2010](https://doi.org/10.1145/1644001.1644006)
 * [Abedallah Rababah, Recurrence Relations for Orthogonal Polynomials on Triangular Domains, MDPI Mathematics 2016, 4(2)](https://doi.org/10.3390/math4020025)
-* [Yuan Xu, Orthogonal polynomials of several variables, archiv.org, January 2017](https://arxiv.org/abs/1701.02709)
+* [Yuan Xu, Orthogonal polynomials of several variables, arxiv.org, January 2017](https://arxiv.org/abs/1701.02709)
 
 ### License
 This software is published under the [GPLv3 license](https://www.gnu.org/licenses/gpl-3.0.en.html).
